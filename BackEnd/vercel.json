@@ -9,7 +9,7 @@
   "routes": [
     {
       "src": "/products",
-      "dest": "/"
+      "dest": "index.js"
     }
   ]
 }
