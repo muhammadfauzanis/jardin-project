@@ -23,20 +23,12 @@ export const Helper = () => {
 
   const baseURLAPI = (url = '') => {
     url = url.replace(/^[/]/g, '');
-    const baseURL = 'http://localhost:9000/';
+    const baseURL = 'https://jardin-api.vercel.app/';
     return baseURL + url;
   };
-
-  //   const descriptionShort = (description = '') => {
-  //     if (description.length > 80) {
-  //       description = description.slice(0, 80) + '...';
-  //     }
-  //     return description;
-  //   };
 
   return {
     formatPrice,
     baseURLAPI,
-    // descriptionShort,
   };
 };
