@@ -15,13 +15,6 @@ connectDB();
 
 app.use(express.json());
 
-app.use(
-  cors({
-    credentials: true,
-    origin: 'http://localhost:5173' || 'http://localhost:5174',
-  })
-);
-
 app.get('/', (req, res) => {
   res.send('Halo server jalan');
 });
