@@ -18,10 +18,7 @@ app.use(express.json());
 app.use(
   cors({
     credentials: true,
-    origin:
-      'http://localhost:5173' ||
-      'http://localhost:5174' ||
-      'https://jardin-resto-app.vercel.app/',
+    origin: 'https://jardin-resto-app.vercel.app',
   })
 );
 
