@@ -94,8 +94,7 @@ const OrderCard = ({ cartData, getCartData, cartId }) => {
                     <h3 className="font-semibold">
                       {item.productId.productName}
                     </h3>
-                    <p className="font-light">Detail pesanan</p>
-                    <p className="font-light">Detail pesanan</p>
+                    <p className="text-xs">Note: {item.option}</p>
                   </div>
                   <img
                     src={item.productId.image}

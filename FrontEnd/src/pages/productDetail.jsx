@@ -1,7 +1,6 @@
 import { GoArrowLeft } from 'react-icons/go';
 import { Link, useLocation, useParams } from 'react-router-dom';
 import ButtonAddToCart from '../components/ButtonAddToCart';
-import MenuSelectionForm from '../components/MenuSelectionForm';
 import { useEffect, useState } from 'react';
 import { Helper } from '../Helper/Helper';
 import axios from 'axios';
@@ -9,6 +8,7 @@ import axios from 'axios';
 const ProductDetail = () => {
   const { baseURLAPI, formatPrice } = Helper();
   const [product, setProduct] = useState([]);
+  const [option, setOption] = useState('');
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const productId = params.get('productID');
@@ -21,6 +21,10 @@ const ProductDetail = () => {
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const handleNoteChange = (e) => {
+    setOption(e.target.value);
   };
 
   useEffect(() => {
@@ -55,23 +59,26 @@ const ProductDetail = () => {
       </div>
 
       <div className="px-4">
-        <MenuSelectionForm
-          name={'Ice Cube'}
-          type1={'Normal Ice'}
-          type2={'Less Ice'}
-          type3={'No Ice'}
-        />
-
-        <hr className="h-[2px] w-full mx-auto bg-gray-600 opacity-50" />
-        <MenuSelectionForm
-          name={'Sweatness'}
-          type1={'Normal Sugar'}
-          type2={'Less Sugar'}
-          type3={'No Sugar'}
-        />
+        <form className="py-4">
+          <h3 className="text-xl font-bold mb-3">Note</h3>
+          <textarea
+            name="order-note"
+            id="order-note"
+            cols="30"
+            rows="4"
+            placeholder="Customize your order..."
+            className="w-full p-2 bg-bgColorPrimary border-2 border-primary rounded-xl shadow-lg focus:border-secondary caret-primary"
+            value={option}
+            onChange={handleNoteChange}
+          ></textarea>
+        </form>
       </div>
 
-      <ButtonAddToCart productId={productId} productPrice={product.price} />
+      <ButtonAddToCart
+        productId={productId}
+        productPrice={product.price}
+        option={option}
+      />
     </div>
   );
 };

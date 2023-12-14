@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import useUserId from '../utils/useUserId';
 
-const ButtonAddToCart = ({ productId, productPrice }) => {
+const ButtonAddToCart = ({ productId, productPrice, option = '' }) => {
   const { baseURLAPI } = Helper();
   // const [userId, setUserId] = useState('');
   const userId = useUserId();
@@ -23,6 +23,7 @@ const ButtonAddToCart = ({ productId, productPrice }) => {
         productId,
         quantity,
         totalPrice,
+        option,
       });
       alert('Item added to cart!');
     } catch (error) {
