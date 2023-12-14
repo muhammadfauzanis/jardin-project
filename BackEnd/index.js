@@ -99,6 +99,26 @@ app.get('/products/:productId', async (req, res) => {
   }
 });
 
+app.put('/products/:productId', async (req, res) => {
+  try {
+    const productId = req.params.productId;
+    const { orderNote } = req.params.body;
+    const product = await Products.findById(productId);
+
+    if (!product) {
+      response(404, 'Invalid', 'Cannot get product', res);
+    }
+
+    product.note = orderNote;
+
+    await product.save();
+
+    response(201, product, 'Success add note', res);
+  } catch (err) {
+    response(500, err, 'Server Error', res);
+  }
+});
+
 // CARTS
 const Cart = require('./models/Carts');
 app.post('/carts', async (req, res) => {

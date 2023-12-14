@@ -18,8 +18,8 @@ const cartSchema = new mongoose.Schema({
       },
 
       option: {
-        type: [String],
-        default: [''],
+        type: String,
+        default: '',
       },
       updatedAt: {
         type: Date,
