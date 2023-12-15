@@ -32,7 +32,7 @@ const CategoryBar = () => {
           key={item._id}
           to={item.name}
           smooth={true}
-          duration={500}
+          duration={1000}
           offset={-120}
           onClick={() => setSelectedCategory(item._id)}
         >
