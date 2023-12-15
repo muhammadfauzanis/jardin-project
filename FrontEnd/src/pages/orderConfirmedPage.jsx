@@ -1,5 +1,5 @@
 import { FaRegCircleCheck } from 'react-icons/fa6';
-import { Link } from 'react-router-dom';
+import ButtonBackToMenu from '../components/ButtonBackToMenu';
 
 const OrderConfirmedPage = () => {
   return (
@@ -9,11 +9,7 @@ const OrderConfirmedPage = () => {
       <p className="text-sm font-semibold">Your order has been successfully</p>
       <p className="text-sm ">We prepare your food, please wait</p>
 
-      <Link to={'/'} className="max-w-lg w-[70%] bg-bgColorPrimary p-5">
-        <button className="flex justify-center items-center bg-primary p-4 rounded-lg text-white w-full">
-          <p>Back to Menu</p>
-        </button>
-      </Link>
+      <ButtonBackToMenu />
     </div>
   );
 };

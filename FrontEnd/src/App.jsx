@@ -4,6 +4,7 @@ import ProductDetail from './pages/productDetail';
 import CheckoutPage from './pages/checkoutPage';
 import OrderConfirmedPage from './pages/orderConfirmedPage';
 import { SkeletonTheme } from 'react-loading-skeleton';
+import NotFoundPage from './pages/notFoundPage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path="/product-detail" element={<ProductDetail />} />
             <Route path="/check-out" element={<CheckoutPage />} />
             <Route path="/order-confirmed" element={<OrderConfirmedPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Router>
       </SkeletonTheme>
