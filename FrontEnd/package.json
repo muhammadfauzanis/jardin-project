@@ -17,6 +17,7 @@
     "react-loading-skeleton": "^3.3.1",
     "react-router-dom": "^6.19.0",
     "react-scroll": "^1.9.0",
+    "sweetalert2": "^11.10.1",
     "tailwind-scrollbar-hide": "^1.1.7"
   },
   "devDependencies": {

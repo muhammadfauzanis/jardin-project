@@ -3,6 +3,7 @@ import { Helper } from '../Helper/Helper';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import useUserId from '../utils/useUserId';
+import Swal from 'sweetalert2';
 
 const ButtonAddToCart = ({ productId, productPrice, option = '' }) => {
   const { baseURLAPI } = Helper();
@@ -25,7 +26,13 @@ const ButtonAddToCart = ({ productId, productPrice, option = '' }) => {
         totalPrice,
         option,
       });
-      alert('Item added to cart!');
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Item added to cart!',
+        showConfirmButton: false,
+        timer: 2000,
+      });
     } catch (error) {
       console.error('Error adding item to cart:', error);
     }
