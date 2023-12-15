@@ -4,11 +4,13 @@ import ButtonAddToCart from '../components/ButtonAddToCart';
 import { useEffect, useState } from 'react';
 import { Helper } from '../Helper/Helper';
 import axios from 'axios';
+import Skeleton from 'react-loading-skeleton';
 
 const ProductDetail = () => {
   const { baseURLAPI, formatPrice } = Helper();
   const [product, setProduct] = useState([]);
   const [option, setOption] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const productId = params.get('productID');
@@ -17,6 +19,9 @@ const ProductDetail = () => {
     try {
       console.log(params);
       const response = await axios.get(baseURLAPI(`products/${productId}`));
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 500);
       setProduct(response.data[0].data);
     } catch (err) {
       console.log(err);
@@ -38,24 +43,40 @@ const ProductDetail = () => {
           <GoArrowLeft size={25} />
         </div>
       </Link>
-      <img
-        src={product.image}
-        alt={product.productName}
-        className="rounded-b-2xl w-full h-[350px] object-cover mb-4 shadow-md"
-      />
+      {isLoading ? (
+        <Skeleton className="w-full h-[350px] mb-4" />
+      ) : (
+        <img
+          src={product.image}
+          alt={product.productName}
+          className="rounded-b-2xl w-full h-[350px] object-cover mb-4 shadow-md"
+        />
+      )}
 
       <div className="px-4 pb-3 border-b-[6px] border-secondary border-opacity-70 ">
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-bold uppercase ">
-            {product.productName}
-          </h3>
-          <p className="text-primary font-semibold text-lg">
-            {formatPrice(product.price)}
-          </p>
+          {isLoading ? (
+            <Skeleton width={200} height={24} />
+          ) : (
+            <h3 className="text-xl font-bold uppercase ">
+              {product.productName}
+            </h3>
+          )}
+          {isLoading ? (
+            <Skeleton width={80} />
+          ) : (
+            <p className="text-primary font-semibold text-lg">
+              {formatPrice(product.price)}
+            </p>
+          )}
         </div>
-        <p className="text-sm text-justify line-clamp-3 text-gray-500 opacity-70">
-          {product.description}
-        </p>
+        {isLoading ? (
+          <Skeleton count={3} />
+        ) : (
+          <p className="text-sm text-justify line-clamp-3 text-gray-500 opacity-70">
+            {product.description}
+          </p>
+        )}
       </div>
 
       <div className="px-4">

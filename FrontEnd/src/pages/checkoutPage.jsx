@@ -6,6 +6,7 @@ import { Helper } from '../Helper/Helper';
 import axios from 'axios';
 import OrderCard from '../components/OrderCard';
 import useUserId from '../utils/useUserId';
+import Skeleton from 'react-loading-skeleton';
 
 const CheckoutPage = () => {
   const [tableNumber, setTableNumber] = useState('');
@@ -14,6 +15,7 @@ const CheckoutPage = () => {
   const [totalPrice, setTotalPrice] = useState('');
   const [redirect, setRedirect] = useState('');
   const [warning, setWarning] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { baseURLAPI, formatPrice } = Helper();
   const userId = useUserId();
 
@@ -23,6 +25,9 @@ const CheckoutPage = () => {
       setTotalPrice(response.data[0].data.totalPrice);
       setCartId(response.data[0].data._id);
       setCartData(response.data[0].data);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 500);
     } catch (error) {
       console.error('Error getting data', error);
     }
@@ -85,14 +90,24 @@ const CheckoutPage = () => {
         cartData={cartData}
         getCartData={getCartData}
         cartId={cartId}
+        isLoading={isLoading}
       />
 
       <hr className="h-2 bg-white" />
 
       {totalPrice ? (
         <div className="flex justify-between items-center p-6 font-semibold">
-          <h3>Total Price</h3>
-          <p>{formatPrice(totalPrice)}</p>
+          {isLoading ? (
+            <div className="flex justify-between w-full">
+              <Skeleton width={100} height={20} />
+              <Skeleton width={80} height={20} />
+            </div>
+          ) : (
+            <>
+              <h3>Total Price</h3>
+              <p>{formatPrice(totalPrice)}</p>
+            </>
+          )}
         </div>
       ) : null}
 
