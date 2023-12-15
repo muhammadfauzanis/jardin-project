@@ -11,7 +11,6 @@ const CategoryBar = () => {
   const fetchDataProduct = async () => {
     try {
       const response = await axios.get(baseURLAPI('category'));
-      // console.log(response.data.categorys);
       setAllProducts(response.data.categorys);
     } catch (error) {
       console.error(error);
@@ -45,7 +44,7 @@ const CategoryBar = () => {
             } `}
             key={item.name}
           >
-            <div className="">
+            <div className="whitespace-nowrap">
               <p>{item.name}</p>
             </div>
           </button>
