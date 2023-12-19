@@ -1,3 +1,4 @@
+import { Link } from 'react-scroll';
 import CategoryBar from '../components/CategoryBar';
 import ProductCard from '../components/ProductCard';
 import { useState } from 'react';
@@ -11,6 +12,14 @@ const HomePage = () => {
       setIsFixed(false);
     }
   };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   window.addEventListener('scroll', handleScroll);
 
   return (
@@ -20,7 +29,10 @@ const HomePage = () => {
           isFixed ? 'bg-white shadow-md' : 'bg-bgColorPrimary'
         }`}
       >
-        <h1 className="font-bold text-primary text-center p-5 text-2xl">
+        <h1
+          className="font-bold text-primary text-center p-5 text-2xl cursor-pointer"
+          onClick={scrollToTop}
+        >
           Jardin
         </h1>
 

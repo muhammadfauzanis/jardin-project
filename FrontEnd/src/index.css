@@ -22,11 +22,11 @@
   border-radius: 50%;
   border: 5px solid #d0e7d2;
   animation: prixClipFix 2s linear infinite;
+  transition: all 500;
 }
 .loader::after {
   inset: 8px;
   transform: rotate3d(90, 90, 0, 180deg);
-  border-color: #3eb489;
 }
 
 @keyframes rotate {

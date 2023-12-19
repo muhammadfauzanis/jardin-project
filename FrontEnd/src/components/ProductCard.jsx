@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helper } from '../Helper/Helper';
 import ButtonCheckOut from './ButtonCheckOut';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const ProductCard = () => {
   const { baseURLAPI, formatPrice } = Helper();
@@ -24,6 +26,7 @@ const ProductCard = () => {
 
   useEffect(() => {
     fetchDataProduct();
+    AOS.init({ duration: 1500 });
   }, []);
 
   // Mengelompokkan produk berdasarkan kategori
@@ -48,7 +51,7 @@ const ProductCard = () => {
       ) : (
         <>
           {Object.values(groupedProducts).map((group) => (
-            <div key={group.category._id} className="">
+            <div key={group.category._id} className="" data-aos="fade-up">
               <h1
                 className="text-lg text-primary px-5 font-semibold"
                 id={group.category.name}
