@@ -37,7 +37,7 @@ const CheckoutPage = () => {
     ev.preventDefault();
 
     if (!tableNumber) {
-      setWarning(true);
+      return setWarning(true);
     }
 
     try {
@@ -80,7 +80,7 @@ const CheckoutPage = () => {
         />
 
         {warning ? (
-          <p className="text-red-500 text-sm px-3">*Table number is required</p>
+          <p className="text-red-500 text-sm px-3">*Table number is invalid</p>
         ) : null}
       </form>
 
